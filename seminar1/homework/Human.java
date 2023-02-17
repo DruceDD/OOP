@@ -140,4 +140,3 @@ public class Human {
         this.spouseID = (int) sp.personalID;
     }
 }
-}
