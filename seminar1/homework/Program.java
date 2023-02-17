@@ -23,11 +23,7 @@
 но совершенно не знаем прабабушку - как хранить такие связи или что будет если в компоненту обхода передать ссылку на null-дерево.
 */
 
-<<<<<<< HEAD
 package homework;
-=======
-package seminar1.homework;
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -87,11 +83,7 @@ public class Program {
         int select = getNumberMainMenu();
 
         if (select == 1) {
-<<<<<<< HEAD
             printAll(tree, "seminar1/homework/tree.json");
-=======
-            printAll(tree, "tree.json");
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
         } else if (select == 2) {
             addNewPerson(tree);
             writeInJSONFile(tree);
@@ -110,20 +102,6 @@ public class Program {
             }
         } else System.out.println("Некорректный ввод!");
 
-<<<<<<< HEAD
-=======
-
-//        System.out.println();
-//        System.out.println(hum1.isParent(hum2));
-//        System.out.println(hum5.isSibling(hum1));
-//        System.out.println(hum1.isSpouse(hum4));
-//        System.out.println(isCousins(tree, hum6, hum1));
-//        System.out.println("Список детей:\n" + kids(tree, hum2));
-//        System.out.println(tree);
-
-//        Gson g = new Gson();
-//        Human girl5 = g.fromJson(getDataFromFile("*.json"), Human.class);
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
     }
 
 
@@ -131,17 +109,7 @@ public class Program {
 
     // методы меню для пользователя
     public static int getNumberMainMenu() {
-<<<<<<< HEAD
         System.out.println("Выберите одну из команд:\n1 - показать всех людей из списка\n2 - добавить человека в список\n3 - провести исследование на родство>");
-=======
-        System.out.println("""
-                Выберите одну из команд:
-                1 - показать всех людей из списка
-                2 - добавить человека в список
-                3 - провести исследование на родство
-                
-                >""");
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
         try {
             return input.nextInt();
         } catch (Exception e) {
@@ -150,19 +118,7 @@ public class Program {
     }
 
     public static int getNumberResearchMenu() {
-<<<<<<< HEAD
         System.out.println("Выберите одну из команд:\n1 - выявить родство 2х людей (родители/дети, братья/сестры, супруги)\n2 - показать всех детей\n3 - показать всех родных братьев и сестер\n4 - показать родителей\n5 - показать супруга");
-=======
-        System.out.println("""
-                Выберите одну из команд:
-                1 - выявить родство 2х людей (родители/дети, братья/сестры, супруги)
-                2 - показать всех детей
-                3 - показать всех родных братьев и сестер
-                4 - показать родителей
-                5 - показать супруга
-
-                >""");
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
         try {
             return input.nextInt();
         } catch (Exception e) {
@@ -214,11 +170,7 @@ public class Program {
     }
 
     public static void writeInJSONFile(List<Human> tree){
-<<<<<<< HEAD
         try(FileWriter writer = new FileWriter("seminar1/homework/tree.json", false))
-=======
-        try(FileWriter writer = new FileWriter("tree.json", false))
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
         {
             StringBuilder json = new StringBuilder();
             List<String> resultList = new ArrayList<>();
@@ -312,11 +264,7 @@ public class Program {
             int id = input.nextInt();
             Human hum = findHuman(tree, id);
 
-<<<<<<< HEAD
             return "Мать: " + findHuman(tree, hum.getMotherID()).getName() + "\n" +
-=======
-            return "Мать: " + findHuman(tree, hum.getMotherID()).getName() +
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
                     "Отец: " + findHuman(tree, hum.getFatherID()).getName();
 
         } catch (Exception e) {
@@ -347,7 +295,6 @@ public class Program {
             List<Human> siblings = new ArrayList<>();
 
             for (Human h: tree) {
-<<<<<<< HEAD
                 if (hum.isSibling(h) && id != h.getPersonalID()) {
                     siblings.add(h);
                 }
@@ -355,13 +302,6 @@ public class Program {
             if (siblings.size() != 0) {
                 return "Родные братья/сестры: " + siblings;
             } else return "Нет братьев/сестер";
-=======
-                if (hum.isSibling(h)) {
-                    siblings.add(h);
-                }
-            }
-            return "Родные братья/сестры: " + siblings;
->>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
         }
         catch (Exception e) {
             System.out.println("Введены неверные данные");
