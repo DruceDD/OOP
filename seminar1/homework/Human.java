@@ -3,6 +3,9 @@ package homework;
     import java.time.LocalDate;
     import java.util.concurrent.atomic.AtomicLong;
 
+    import java.time.LocalDate;
+    import java.util.concurrent.atomic.AtomicLong;
+
 public class Human {
 
     private static AtomicLong counter = new AtomicLong(1000);
@@ -46,7 +49,21 @@ public class Human {
     }
 
     public String printJSON(){
+<<<<<<< HEAD
         return String.format("{\"name\": \"%s\", \"birthdate\": \"%s\",\"sex\": %s,\"personalID\": %d,\"motherID\": %d,\"fatherID\": %d,\"spouseID\": %d}", this.name, this.birthdate.toString(), sex, this.personalID, this.motherID, this.fatherID, this.spouseID);
+=======
+        return String.format("""
+                {
+                    "name": "%s",
+                    "birthdate": "%s",
+                    "sex": %s,
+                    "personalID": %d,
+                    "motherID": %d,
+                    "fatherID": %d,
+                    "spouseID": %d
+                }""",
+                this.name, this.birthdate.toString(), sex, this.personalID, this.motherID, this.fatherID, this.spouseID);
+>>>>>>> 25d88869bbad2ee74257909146c81201fb0336e0
     }
 
 
