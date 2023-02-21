@@ -2,9 +2,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class Human implements Serializable {
+public class Human implements Serializable, Comparable<Human> {
 
+    private static final long serialVersionUID = -7620980782155224836L;
+    private static AtomicLong counter = new AtomicLong(1000);
+
+    private long personalID;
     private String name;
     private LocalDate date;
     private String sex;
@@ -13,6 +18,9 @@ public class Human implements Serializable {
     private List<Human> kids;
     private List<Communication> communicationList;
 
+    public static long nextId() {
+        return counter.incrementAndGet();
+    }  // генерация уникальных ID
 
     public Human(String name, int year, int month, int day, String sex) {
         this.name = name;
@@ -20,12 +28,17 @@ public class Human implements Serializable {
         this.sex = sex;
         this.communicationList = new ArrayList<>();
         this.kids = new ArrayList<>();
+        this.personalID = Human.nextId();
     }
 
     public Human() {
     }
 
     // геттеры и сеттеры
+    public long getPersonalID() {
+        return personalID;
+    }
+
     public String getName() {
         return name;
     }
@@ -108,12 +121,12 @@ public class Human implements Serializable {
 
     public void showParents() {
         if (father != null || mother != null) {
-//            System.out.println("\nРодители:");
+            System.out.println("Родители:");
             if (father != null) {
-                System.out.println(father);
+                System.out.println("Отец:" + father);
             }
             if (mother != null) {
-                System.out.println(mother);
+                System.out.println("Мать:" + mother);
             }
         } else System.out.println("Нет данных");
     }
@@ -122,15 +135,15 @@ public class Human implements Serializable {
         try {
             List<Human> children = mother.getKids();
             if (children.size() > 1) {
-                System.out.println("\nБратья/сестры:");
+                System.out.println("Братья/сестры:");
                 for (Human h : children) {
                     if (h != this) {
                         System.out.println(h);
                     }
                 }
-            } else System.out.println("\nНет братьев/сестер или нет данных");
+            } else System.out.println("Нет данных о братьях/сестрах");
         } catch (NullPointerException e) {
-            System.out.println("\nНет данных о братьях/сестрах");
+            System.out.println("Нет данных о братьях/сестрах");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -138,12 +151,27 @@ public class Human implements Serializable {
 
     }
 
+    public void showSpouse() {
+
+    }
 
     @Override
     public String toString() {
-        return "Имя: " + name +
-                ", дата рождения: " + date +
+        return "ID: " + personalID +
+                "  Имя: " + String.format("%-10s", name) +
+                " дата рождения: " + date +
                 ", пол: " + sex;
     }
+
+    @Override
+    public int compareTo(Human o) {
+        if (date.isBefore(o.getDate())) {
+            return -1;
+        } else if (date.isAfter(o.getDate())) {
+            return 1;
+        } else return 0;
+    }
+
+
 }
 
