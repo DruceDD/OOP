@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import homework2.Human;
+
 public class Program {
     private static Scanner input = new Scanner(System.in);
 
