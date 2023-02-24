@@ -27,8 +27,8 @@ public class AddHuman implements Option {
             System.out.println("Введите день рождения:");
             int day = input.nextInt();
             System.out.println("Введите пол (М/Ж):");
-            String personSex = input.next().toLowerCase();
             String sex = "";
+            String personSex = input.next().toLowerCase();
             if (personSex.equals("м")) sex = "М";
             else if (personSex.equals("ж")) sex = "Ж";
             else System.out.println("Введены неверные данные");

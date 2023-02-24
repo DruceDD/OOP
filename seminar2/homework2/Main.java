@@ -46,6 +46,16 @@ public class Main {
     //    h3.addCommunication(h9, TypeCommunication.SON);
     //    h10.addCommunication(h9, TypeCommunication.SON);
 
+
+    // //    Human h11 = new Human("Grandpa", 1964, 4, 17, "М");
+    // //    Human h12 = new Human("Dad", 1984, 4, 17, "М");
+    // //    Human h13 = new Human("Son", 2004, 4, 17, "М");
+    // //    h12.addCommunication(h11, TypeCommunication.FATHER);
+    // //    h11.addCommunication(h12, TypeCommunication.SON);
+    // //    h13.addCommunication(h12, TypeCommunication.FATHER);
+    // //    h12.addCommunication(h13, TypeCommunication.SON);
+
+
     //    tree.addHuman(h1);
     //    tree.addHuman(h2);
     //    tree.addHuman(h3);
@@ -56,6 +66,9 @@ public class Main {
     //    tree.addHuman(h8);
     //    tree.addHuman(h9);
     //    tree.addHuman(h10);
+    // //    tree.addHuman(h11);
+    // //    tree.addHuman(h12);
+    // //    tree.addHuman(h13);
 
 
         FileHandler fileHandler = new FileHandler();
@@ -70,32 +83,21 @@ public class Main {
         commandList.add(new ShowSiblings(tree));
         commandList.add(new ShowGrandparents(tree));
         commandList.add(new ShowRelatives(tree));
+        commandList.add(new RemoveHuman(tree));
 
         System.out.println("Выберите нужный пункт:");
         for (int i = 0; i < commandList.size(); i++) {
-            System.out.println(i+1 + ": " + commandList.get(i).description());
+            System.out.println(i + 1 + ": " + commandList.get(i).description());
         }
         Scanner scanner = new Scanner(System.in);
         try {
             int choose = scanner.nextInt();
-            if (choose > 0 && choose < commandList.size()+1){
-                commandList.get(choose-1).execute();
-            }
-            else System.out.println("Некорректный ввод!");
-        }
-        catch (Exception e) {
+            if (choose > 0 && choose < commandList.size() + 1) {
+                commandList.get(choose - 1).execute();
+            } else System.out.println("Некорректный ввод!");
+        } catch (Exception e) {
             System.out.println("Некорректный ввод!");
         }
-
-
-
-//
-//        System.out.println("Родители:");
-//        h3.showParents();
-//        h3.showSiblings();
-//
-//        h2.showKids();
-
 
         fileHandler.writeFile("seminar2/homework2/tree/tree.out", tree);
     }

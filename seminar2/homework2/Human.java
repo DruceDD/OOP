@@ -2,10 +2,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Human implements Serializable, Comparable<Human> {
-
+    
     private static final long serialVersionUID = -7620980782155224836L;
     private static AtomicLong counter = new AtomicLong(1000);
 
@@ -18,9 +19,9 @@ public class Human implements Serializable, Comparable<Human> {
     private List<Human> kids;
     private List<Communication> communicationList;
 
-    public static long nextId() {
-        return counter.incrementAndGet();
-    }  // генерация уникальных ID
+    // public static long nextId() {
+    //     return counter.incrementAndGet();
+    // }  // генерация уникальных ID
 
     public Human(String name, int year, int month, int day, String sex) {
         this.name = name;
@@ -28,7 +29,7 @@ public class Human implements Serializable, Comparable<Human> {
         this.sex = sex;
         this.communicationList = new ArrayList<>();
         this.kids = new ArrayList<>();
-        this.personalID = Human.nextId();
+        this.personalID = Human.counter.incrementAndGet();
     }
 
     public Human() {
@@ -83,10 +84,17 @@ public class Human implements Serializable, Comparable<Human> {
         return kids;
     }
 
+    public void setKids(List<Human> kids) {
+        this.kids = kids;
+    }
+
     public List<Communication> getCommunicationList() {
         return communicationList;
     }
 
+    public void setCommunicationList(List<Communication> communicationList) {
+        this.communicationList = communicationList;
+    }
 
     // методы для добавления родственных связей
     public void addCommunication(Human human, TypeCommunication typeCommunication) {
@@ -105,7 +113,6 @@ public class Human implements Serializable, Comparable<Human> {
     public void addKid(Human human) {
         kids.add(human);
     }
-
 
     // методы для отображения родственных связей
     public void showKids() {
@@ -152,7 +159,6 @@ public class Human implements Serializable, Comparable<Human> {
     }
 
     public void showSpouse() {
-
     }
 
     @Override
@@ -172,6 +178,19 @@ public class Human implements Serializable, Comparable<Human> {
         } else return 0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return personalID == human.personalID
+                && name.equals(human.name)
+                && date.equals(human.date)
+                && sex.equals(human.sex);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(personalID);
+    }
 }
-
