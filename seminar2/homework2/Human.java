@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Human implements Serializable, Comparable<Human> {
-    
+
     private static final long serialVersionUID = -7620980782155224836L;
     private static AtomicLong counter = new AtomicLong(1000);
 
@@ -19,9 +19,9 @@ public class Human implements Serializable, Comparable<Human> {
     private List<Human> kids;
     private List<Communication> communicationList;
 
-    // public static long nextId() {
-    //     return counter.incrementAndGet();
-    // }  // генерация уникальных ID
+    public static long nextId() {
+        return counter.incrementAndGet();
+    }  // генерация уникальных ID
 
     public Human(String name, int year, int month, int day, String sex) {
         this.name = name;
@@ -29,7 +29,7 @@ public class Human implements Serializable, Comparable<Human> {
         this.sex = sex;
         this.communicationList = new ArrayList<>();
         this.kids = new ArrayList<>();
-        this.personalID = Human.counter.incrementAndGet();
+        this.personalID = Human.nextId();
     }
 
     public Human() {
@@ -167,6 +167,11 @@ public class Human implements Serializable, Comparable<Human> {
                 "  Имя: " + String.format("%-10s", name) +
                 " дата рождения: " + date +
                 ", пол: " + sex;
+    }
+
+    public String toWindow(String human) {
+        String res = human+"<br>";
+        return res;
     }
 
     @Override
